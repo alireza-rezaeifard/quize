@@ -1,0 +1,32 @@
+<!-- profile.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
+
+<!-- previous_results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Previous Results</title>
+</head>
+<body>
+    <h1>Previous Results</h1>
+    <ul>
+        {% for game in games %}
+            <li>{{ game.start_time }} - {{ game.score }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

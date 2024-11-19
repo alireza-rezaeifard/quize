@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const endTime = {{ end_time }};
+            const timerElement = document.getElementById('timer');
+            const timeUpForm = document.getElementById('timeUpForm');
+
+            function updateTimer() {
+                const currentTime = Math.floor(Date.now() / 1000);
+                const timeLeft = endTime - currentTime;
+                if (timeLeft <= 0) {
+                    timerElement.innerText = "Time's up!";
+                    timeUpForm.submit();
+                } else {
+                    timerElement.innerText = timeLeft;
+                }
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        });
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>{{ category.name }} Question</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <p id="timer" class="h2 text-danger">25</p>
+                        </div>
+                        <p class="lead">{{ question.text }}</p>
+                        <form method="post" action="{% url 'answer_question' question.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {% for choice in choices %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answer" id="choice{{ forloop.counter }}" value="{{ choice }}">
+                                        <label class="form-check-label" for="choice{{ forloop.counter }}">
+                                            {{ choice }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit Answer</button>
+                        </form>
+                        <form id="timeUpForm" method="post" action="{% url 'answer_question' question.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="answer" value="">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

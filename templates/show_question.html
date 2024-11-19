@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Question</title>
+    <style>
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        /* سایر استایل‌های شما */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ category.name }}</h1>
+        <div class="question">
+            <p>{{ question.text }}</p>
+        </div>
+        <div class="timer" id="timer">Time left: 25s</div>
+        <form method="post" action="{% url 'answer_question' question.id %}">
+            {% csrf_token %}
+            {% for choice in choices %}
+                <div>
+                    <input type="radio" name="answer" value="{{ choice }}" id="{{ choice }}">
+                    <label for="{{ choice }}">{{ choice }}</label>
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Answer</button>
+        </form>
+    </div>
+    <script>
+        // تایمر 25 ثانیه‌ای
+        let timeLeft = 25;
+        const timerElement = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerElement.innerText = "Time's up!";
+                document.querySelector('form').submit(); // به صورت خودکار فرم را ارسال می‌کند
+            } else {
+                timerElement.innerText = `Time left: ${timeLeft}s`;
+            }
+            timeLeft -= 1;
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Responsive NFT Landing Page | AsmrProg</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <!-- Navbar -->
+        <div class="navbar">
+            <a href="#" class="logo">AsmrProg</a>
+            <div class="nav-links">
+                <a href="{% url 'home' %}" class="item selected">Home</a>
+                <a href="{% url 'login' %}" class="item selected">Login</a>
+                <a href="{% url 'signup' %}" class="item selected">Sign Up</a>
+                <a href="{% url 'upload_questions' %}" class="item selected">Upload Questions</a>
+                <a href="{% url 'choose_category' %}" class="item selected">Choose Category</a>
+                <span id="scroll" class="item">Get Started</span>
+            </div>
+            <div class="nav-buttons" id="navMenu">
+                <button href="{% url 'upload_questions' %}" class="nav-btn selected">Upload Questions</button>
+                <button href="{% url 'login' %}" class="nav-btn">SIGN IN</button>
+            </div>
+
+            <button class="toggler">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+        <!-- End of Navbar -->
+
+        <!-- Top Container -->
+        <div class="top-container">
+            <div class="info-box">
+                <p class="header">
+                    Discover, collect, and charity in extraordinary NFT marketplace
+                </p>
+                <p class="info-text">
+                    Explore the best collections from hand-picked digital artists out there and find your gem here in
+                    AsmrProg
+                </p>
+                <div class="info-buttons">
+                    <button class="info-btn selected">Explore</button>
+                    <button class="info-btn nav-btn">Create</button>
+                </div>
+            </div>
+            <div class="nft-box">
+                <img src="{% static "images/nft.jpg" %}" class="nft-pic">
+                <div class="nft-content">
+                    <div class="info">
+                        <img src="{% static "images/logo.png" %}" class="info-img">
+                        <div>
+                            <p>
+                                Reza
+                            </p>
+                            <p>
+                                0.27 Eth
+                            </p>
+                        </div>
+                    </div>
+                    <div class="likes">
+                        <div class="icon-box">
+                            <i class='bx bx-heart'></i>
+                            258
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Top Container -->
+
+        <!-- Get Stearted -->
+        <div class="get-started">
+            <p class="header">Getting Started</p>
+            <p class="info-text">Buy and Sell NFTs from the world's top artists</p>
+            <div class="items-box">
+                <div class="item-container">
+                    <div class="item">
+                        <i class='bx bx-check-shield'></i>
+                    </div>
+                    <p>All transactions are safe</p>
+                </div>
+                <div class="item-container">
+                    <div class="item">
+                        <i class='bx bx-wallet-alt'></i>
+                    </div>
+                    <p>Connect your wallet</p>
+                </div>
+                <div class="item-container">
+                    <div class="item">
+                        <i class='bx bx-money'></i>
+                    </div>
+                    <p>Always free of any charges</p>
+                </div>
+                <div class="item-container">
+                    <div class="item">
+                        <i class='bx bx-rocket'></i>
+                    </div>
+                    <p>Very fast transactions</p>
+                </div>
+            </div>
+        </div>
+        <!-- End of Get Started -->
+
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-header">
+                If you want something to be truly and wholeheartedly yours, turn it into an NFT.
+            </div>
+            <div class="footer-links">
+                <div class="link">
+                    <h5>Marketplace</h5>
+                    <p>Home</p>
+                    <p>Get Started</p>
+                    <p>Discover</p>
+                    <p>Learn More</p>
+                </div>
+                <div class="link">
+                    <h5>Company</h5>
+                    <p>About Us</p>
+                    <p>Services</p>
+                    <p>Team Info</p>
+                </div>
+                <div class="link">
+                    <h5>Contact</h5>
+                    <p>Github</p>
+                    <p>Instagram</p>
+                    <p>Twitter</p>
+                    <p>Facebook</p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- End of Footer -->
+        <div class="copyright">
+            <p>Copyright 2023, AsmrProg Youtube Channel.</p>
+        </div>
+
+    </div>
+
+
+    <script src="{% static "js/index.js" %}"></script>
+</body>
+
+</html>
